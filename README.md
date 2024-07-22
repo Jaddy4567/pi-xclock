@@ -195,15 +195,15 @@ You can install a font either by copying it from your local machine, or by downl
 
 ## Install Script
 
-Run as the `pi' user as commands that need root are call with `sudo`
+Run `install.sh` as the \`pi' user. Commands that need root are call with `sudo`
 
 ```bash
 # run remotely
 ssh pi@ip_of_your_pi 'bash -s' < install.sh [newhostname]
 # eg
-ssh pi@10.197.3.180 'bash -s' < install.sh pi-clock2
+ssh pi@10.19.22.140 'bash -s' < install.sh pi-clock2
 
-# run locally 
+# run locally
 ./install.sh [newhostname]
 ```
 
