@@ -1,14 +1,17 @@
 #!/bin/sh
 
-dpkg -l x11-apps
+dpkg -l x11-apps 2>&1 > /dev/null
 
 if [ "$?" -ne "0" ];
 then
+    echo Installing dependencies
     sudo apt update && sudo apt install xorg xserver-xorg xinit x11-apps unclutter -y
 fi
 
+echo Adding $USER to tty group
 sudo usermod -a -G tty pi
 
+echo Creating .xserverrc
 ( 
 cat << 'XSERVERRC'
 #!/bin/sh
@@ -17,6 +20,7 @@ exec /usr/bin/X -s 0 -dpms -nolisten tcp "$@"
 XSERVERRC
 ) > ~/.xserverrc
 
+echo Creating .xsession
 (
 cat << 'XSESSION' 
 #!/bin/sh
@@ -25,6 +29,7 @@ xclock -digital
 XSESSION
 ) > ~/.xsession
 
+echo Creating .Xresources
 (
 cat << 'XRESOURCES'
 XClock*foreground: #FFFFFF
@@ -38,19 +43,18 @@ XClock*analog: false
 XRESOURCES
 ) > ~/.Xresources
 
-if [ ! -d ~/.fonts ];
+if [ ! -f ~/.fonts/ubuntu.ttf ];
 then
+    echo Installing font
     mkdir ~/.fonts
     cp ubuntu.ttf ~/.fonts/
 fi
-# fc-cache -f
-# fc-list | grep -i ubuntu
-
 
 sudo sed -ibak -e 's/allowed_users=console/allowed_users=anybody\nneeds_root_rights=yes/g' /etc/X11/Xwrapper.config
 
-
 # clock service
+
+echo Creating clock.service
 
 (
 cat << 'CLOCK_SERVICE'
@@ -68,7 +72,7 @@ RestartSec=10
 [Install]
 WantedBy=multi-user.target
 CLOCK_SERVICE
-) | sudo  tee /etc/systemd/system/clock.service
+) | sudo dd of=/etc/systemd/system/clock.service
 
 sudo systemctl daemon-reload
 
