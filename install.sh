@@ -101,5 +101,5 @@ if [ "$?" -eq 1 ];
 then
 # remove scrolling boot text and raspberry logos
 echo inserting quiet into /boot/cmdline.txt
-sudo sed -i.bak=$NOW 's/$/ quiet/' /boot/cmdline.txt
+sudo sed -i.bak-$NOW 's/$/ quiet/' /boot/cmdline.txt
 fi
