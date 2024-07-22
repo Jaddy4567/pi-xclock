@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# from home
+
+NOW=`date +'%Y-%m-%dT%H_%M_%S'`
+cd ~
+
 dpkg -l x11-apps 2>&1 > /dev/null
 
 if [ "$?" -ne "0" ];
@@ -42,15 +47,17 @@ XClock*face: Ubuntu Sans Mono :pixelsize=380 :weight=medium
 XClock*analog: false
 XRESOURCES
 ) > ~/.Xresources
+USER_FONTS_DIR=~/.fonts
 
-if [ ! -f ~/.fonts/ubuntu.ttf ];
+if [ ! -f $USER_FONTS_DIR/ubuntu.ttf ];
 then
     echo Installing font
-    mkdir ~/.fonts
-    cp ubuntu.ttf ~/.fonts/
+    [ -d $USER_FONTS_DIR ] || mkdir $USER_FONTS_DIR
+
+    wget -O $USER_FONTS_DIR/ubuntu.ttf https://github.com/google/fonts/raw/main/ufl/ubuntusansmono/UbuntuSansMono%5Bwght%5D.ttf    
 fi
 
-sudo sed -ibak -e 's/allowed_users=console/allowed_users=anybody\nneeds_root_rights=yes/g' /etc/X11/Xwrapper.config
+sudo sed -i.bak-$NOW -e 's/allowed_users=console/allowed_users=anybody\nneeds_root_rights=yes/g' /etc/X11/Xwrapper.config
 
 # clock service
 
@@ -82,8 +89,9 @@ grep -q 'disable_splash' /boot/config.txt
 
 if [ "$?" -eq 1 ];
 then
-echo inserting disable_splash
-sudo sed -ibak '/Some settings may/a \
+echo Inserting disable_splash into /boot/config.txt
+# removes multi-colour screen on boot
+sudo sed -i.bak-$NOW '/Some settings may/a \
 disable_splash=1' /boot/config.txt
 fi
 
@@ -91,6 +99,7 @@ grep -q 'quiet' /boot/cmdline.txt
 
 if [ "$?" -eq 1 ];
 then
-echo inserting quiet
-sudo sed -ibak 's/$/ quiet/' /boot/cmdline.txt
+# remove scrolling boot text and raspberry logos
+echo inserting quiet into /boot/cmdline.txt
+sudo sed -i.bak-$NOW 's/$/ quiet/' /boot/cmdline.txt
 fi
