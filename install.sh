@@ -1,9 +1,21 @@
 #!/bin/sh
 
 # from home
+cd ~
+
+PI_NAME="${1:-mah-clock1}"
 
 NOW=`date +'%Y-%m-%dT%H_%M_%S'`
-cd ~
+
+echo Setting hostname to $PI_NAME
+
+sudo sed -i.bak-$NOW "s/127\.0\.1\.1.*/127.0.1.1\t$PI_NAME/" /etc/hosts
+
+sudo cp /etc/hostname /etc/hostname.bak-$NOW
+
+sudo hostnamectl set-hostname $PI_NAME
+
+# echo $PI_NAME | sudo dd of=/etc/hostname
 
 dpkg -l x11-apps 2>&1 > /dev/null
 

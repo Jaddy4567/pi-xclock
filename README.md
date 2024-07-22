@@ -193,6 +193,21 @@ You can install a font either by copying it from your local machine, or by downl
 
 ## 13. Other
 
+## Install Script
+
+Run `install.sh` as the \`pi' user. Commands that need root are call with `sudo`
+
+```bash
+# run remotely
+ssh pi@ip_of_your_pi 'bash -s' < install.sh [newhostname]
+# eg
+ssh pi@10.19.22.140 'bash -s' < install.sh pi-clock2
+
+# run locally
+./install.sh [newhostname]
+```
+
+
 ### Debugging
 
 If the clock does not start, log into the Raspberry Pi via SSH and check the logs:
