@@ -107,11 +107,11 @@ sudo sed -i.bak-$NOW '/Some settings may/a \
 disable_splash=1' /boot/config.txt
 fi
 
-grep -q 'quiet' /boot/cmdline.txt
+# grep -q 'quiet' /boot/cmdline.txt
 
-if [ "$?" -eq 1 ];
-then
+# if [ "$?" -eq 1 ];
+# then
 # remove scrolling boot text and raspberry logos
-echo inserting quiet into /boot/cmdline.txt
-sudo sed -i.bak-$NOW 's/$/ quiet/' /boot/cmdline.txt
-fi
+# echo inserting quiet into /boot/cmdline.txt
+# sudo sed -i.bak-$NOW 's/$/ quiet/' /boot/cmdline.txt
+# fi
