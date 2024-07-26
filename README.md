@@ -4,6 +4,37 @@ A simple clock for the Raspberry Pi utilising Raspberry Pi, X-11 and X-Clock.
 
 These instructions are specific for a defined use case. _YMMV_.
 
+## Install Script
+The `install.sh` contains the manual commands below (step 3 and onwards).
+
+Complete steps 1 and 2 below and then ssh into the Pi and run `install.sh` as the \`pi' user. 
+
+Commands in the script that need root are called with `sudo`
+
+### To download install.sh
+
+```sh
+# SSH to the Pi
+wget -O install.sh https://github.com/Jaddy4567/pi-xclock/raw/main/install.sh
+chmod +x install.sh
+```
+
+### Running the install script
+```bash
+# run locally
+# newhostname is optional default is mah-clock1
+chmod +x ./install.sh && ./install.sh [newhostname]
+
+# you can run remotely
+ssh pi@ip_of_your_pi 'bash -s' < install.sh [newhostname]
+
+
+# example:
+ssh pi@10.19.22.140 'bash -s' < install.sh pi-clock2
+
+
+```
+
 ## 1. Install Raspbian \*_Bullseye_\* on the Raspberry Pi, configure it as follows:
 
 - Image: `Raspberry Pi OS (Legacy, 64-bit) Lite`
@@ -193,19 +224,7 @@ You can install a font either by copying it from your local machine, or by downl
 
 ## 13. Other
 
-## Install Script
 
-Run `install.sh` as the \`pi' user. Commands that need root are call with `sudo`
-
-```bash
-# run remotely
-ssh pi@ip_of_your_pi 'bash -s' < install.sh [newhostname]
-# eg
-ssh pi@10.19.22.140 'bash -s' < install.sh pi-clock2
-
-# run locally
-./install.sh [newhostname]
-```
 
 
 ### Debugging
