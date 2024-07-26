@@ -65,7 +65,7 @@ echo Creating .Xresources
 XClock*foreground: #FFFFFF
 XClock*background: #000000
 ! 12 hour time 01-12
-XClock*strftime: %I:%H:%S
+XClock*strftime: %I:%M:%S
 XClock*update: 1
 XClock*geometry: 1800x900+100+300
 XClock*padding: 0
