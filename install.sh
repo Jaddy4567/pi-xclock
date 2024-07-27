@@ -5,6 +5,9 @@ cd ~
 
 PI_NAME="${1:-mah-clock1}"
 
+if [  "$2" != "remote" ]
+then
+
 echo "Installing pi-xclock with hostname $PI_NAME"
 echo -n "Enter y or Y to Continue. Anything else to quit: "
 read s
@@ -18,6 +21,8 @@ Y | y)
     exit 0
     ;;
 esac
+
+fi
 
 NOW=$(date +'%Y-%m-%dT%H_%M_%S')
 
