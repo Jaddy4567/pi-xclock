@@ -1,14 +1,12 @@
 # Ethernet Gadget
 
-
-
-## Pi
+## Pi Configuration
 
 Configure the Pi device as per [https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget/ethernet-gadget](https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget/ethernet-gadget)
 
 ## Windows 11 RNDIS Driver Installation
 
-When you plug your pi into Windows the Ethernet Gadget may install as a Com port but needs to be an Network Adaptor. change the driver of the comport to the mod-duo-rndis.zip driver below (Remember to scan on Virustotal before you install the driver)
+When you plug your pi into Windows the Ethernet Gadget may install as a COM port, a driver needs to be installed so it appears as a Network Adapter. Change the driver of the comport to the `mod-duo-rndis.zip` driver below (Remember to scan on Virustotal before you install the driver)
 
 [<img src="./README_ASSETS/Ethernet-Gadget-Windows Device Manager.png" width="400">](./README_ASSETS/Ethernet-Gadget-Windows%20Device%20Manager.png)
 
@@ -19,8 +17,8 @@ More information on the Windows driver issues:
 https://www.factoryforward.com/pi-zero-w-headless-setup-windows10-rndis-driver-issue-resolved/
 
 
-## Find the Pi
-You may have trouble finding the Pi because it self assigns an IP and that is on a /16 subnet (65536 hosts).
+## Finding the Pi
+You may have trouble finding the Pi because it self assigns an IP and that is on a `/16` subnet (65536 hosts).
 
 Use this `nmap` command on Mac to speed up finding it... 
 
