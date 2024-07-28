@@ -29,6 +29,7 @@ chmod +x ./install.sh && ./install.sh [newhostname]
 - [Configuring an Ethernet Gadget](./ETHERNET_GADGET.md)
 - [Changing fonts](./FONTS.md)
 - [Changing Colouring](./COLOURS.md)
+- [Determining Screen Resolution](./X11.md)
 
 
 ## 1. Install Raspbian \*_Bullseye_\* on the Raspberry Pi, configure it as follows:

@@ -2,7 +2,7 @@
 
 To change the background colour also requires changing the colour of the root window and turning off the Xclock app border.
 
-To do this edit `~/.xsession` to add a call to `xsetroot` to set the X root window colour and set xclock's `-bw` (border width) parameter to zero
+To do this edit `~/.xsession` to add a call to `xsetroot` which sets the X root window colour and add xclock's `-bw` (border width) parameter and set it to zero
 
 Adjust foreground/background colour and geometry in `~/.Xresources`
 

@@ -35,6 +35,20 @@ dpkg -l x11-apps 2>&1 >/dev/null
 
 if [ "$?" -ne "0" ]; then
     echo Installing dependencies
+    sudo apt update && sudo apt install xorg \
+        xserver-xorg xinit x11-apps unclutter \
+        fontconfig -y
+fi
+
+dpkg -l fonts-urw-base35 2>&1 >/dev/null
+
+if [ "$?" -ne "0" ]; then
+    echo Installing Nimbus Sans Font
+    sudo apt install fonts-urw-base35 -y
+fi
+
+if [ "$?" -ne "0" ]; then
+    echo Installing dependencies
     sudo apt update && sudo apt install xorg xserver-xorg xinit x11-apps unclutter -y
 fi
 
@@ -54,23 +68,29 @@ echo Creating .xsession
 (
     cat <<'XSESSION'
 #!/bin/sh
+# to change background colour uncomment and edit the #RGB
+# xsetroot -solid '#363F59'
 # This tells X server to start XClock at startup
-xclock -digital
+xclock -digital -bw 0
 XSESSION
 ) >~/.xsession
 
 echo Creating .Xresources
 (
     cat <<'XRESOURCES'
+! default white #FFF
 XClock*foreground: #FFFFFF
+! default black #000
 XClock*background: #000000
-! 12 hour time 01-12
+! 12 hour time 01-12 = %I
+! Use man strftime for format strings
 XClock*strftime: %I:%M:%S
 XClock*update: 1
-XClock*geometry: 1800x900+100+300
+XClock*geometry: 1800x900+70+150
 XClock*padding: 0
 ! XClock*face: Ubuntu Sans Mono :pixelsize=380 :weight=medium
-XClock*face: Aurulent Sans Mono :style=Regular :pixelsize=360
+! XClock*face: Aurulent Sans Mono :style=Regular :pixelsize=360
+XClock*face: Nimbus Sans Narrow:style=Bold:size=400
 XClock*analog: false
 XRESOURCES
 ) >~/.Xresources
@@ -128,6 +148,7 @@ if [ "$?" -eq 1 ]; then
 disable_splash=1' /boot/config.txt
 fi
 
+# if you want to remove the boot text add queit
 # grep -q 'quiet' /boot/cmdline.txt
 
 # if [ "$?" -eq 1 ];
@@ -136,3 +157,5 @@ fi
 # echo inserting quiet into /boot/cmdline.txt
 # sudo sed -i.bak-$NOW 's/$/ quiet/' /boot/cmdline.txt
 # fi
+
+echo Reboot to complete the install

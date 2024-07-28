@@ -1,7 +1,6 @@
 ## Fonts
 
 ## Variable Width
-
 Tall narrow fonts fill the screen better
 
 ```sh
@@ -73,14 +72,3 @@ XClock*face: Aurulent Sans Mono :style=Regular :pixelsize=360
 ! XClock*face: AverageMono:style=Bold:size=280
 XClock*analog: false
 ```
-
-
-
-
-https://github.com/Omnibus-Type/Chivo/blob/master/fonts/Chivo%20Mono/ttf/ChivoMono-ExtraLight.ttf
-
-https://github.com/Omnibus-Type/Chivo/raw/master/fonts/Chivo%20Mono/ttf/ChivoMono-SemiBold.ttf
-
-https://www.fontsquirrel.com/fonts/saxMono
-
-https://www.fontsquirrel.com/fonts/aurulent-sans-mono
