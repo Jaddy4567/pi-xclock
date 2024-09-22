@@ -86,11 +86,11 @@ XClock*background: #000000
 ! Use man strftime for format strings
 XClock*strftime: %I:%M:%S
 XClock*update: 1
-XClock*geometry: 1800x900+70+150
+XClock*geometry: 1800x900+70+280
 XClock*padding: 0
 ! XClock*face: Ubuntu Sans Mono :pixelsize=380 :weight=medium
 ! XClock*face: Aurulent Sans Mono :style=Regular :pixelsize=360
-XClock*face: Nimbus Sans Narrow:style=Bold:size=400
+XClock*face: Nimbus Sans Narrow:style=Regular:size=300
 XClock*analog: false
 XRESOURCES
 ) >~/.Xresources
